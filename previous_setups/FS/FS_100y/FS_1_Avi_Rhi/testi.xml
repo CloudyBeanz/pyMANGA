@@ -1,0 +1,107 @@
+<MangaProject>
+    <tree_dynamics>
+        <aboveground_competition>
+            <type> SimpleAsymmetricZOI </type>
+            <domain>
+                <x_1> 0 </x_1>
+                <y_1> 0 </y_1>
+                <x_2> 50 </x_2>
+                <y_2> 10 </y_2>
+            <x_resolution> 250 </x_resolution>
+            <y_resolution> 50 </y_resolution>
+            </domain>
+        </aboveground_competition>
+        <!-- <belowground_competition>
+            <type>OGSLargeScale3D</type>
+            <ogs_project_folder>My_Model\ronny_3</ogs_project_folder>
+            <ogs_project_file>test2.prj</ogs_project_file>
+            <source_mesh>my_first_source.vtu</source_mesh>
+            <bulk_mesh>my_first_model.vtu</bulk_mesh>
+            <delta_t_ogs>500000</delta_t_ogs>
+            <abiotic_drivers>
+                <seaward_salinity>0.035</seaward_salinity>
+                <landward_salinity>0.0</landward_salinity>
+            </abiotic_drivers>
+            <python_script>MANGA_BC_lacked.py</python_script>
+        </belowground_competition>-->
+        <belowground_competition>
+            <type> FixedSalinity </type>
+            <min_x>0</min_x>
+            <max_x>50</max_x>
+            <salinity>0.0 0.035</salinity>
+        </belowground_competition>
+        <tree_growth_and_death>
+            <type>SimpleBettina</type>
+        </tree_growth_and_death>
+    </tree_dynamics>
+    <initial_population>
+        <!--<group>
+            <name>Avicennia</name>
+            <species>Avicennia</species>
+            <distribution>
+                <type> GroupFromFile </type>
+                <n_recruitment_per_step> 0 </n_recruitment_per_step>
+                <filename> model_final/Population_init_2A.csv </filename>
+            </distribution>
+        </group>
+        <group>
+            <name>Rhizophora</name>
+            <species>C:/Users/embdm/Dokumente/FreieUniBerlin/Bachelorarbeit/MASCOT/SourceCode/pyMANGA/PopulationLib/Species/Rhizophora.py</species>
+            <distribution>
+                <type> GroupFromFile </type>
+                <n_recruitment_per_step> 0 </n_recruitment_per_step>
+                <filename> model_final/Population_init_2R.csv </filename>
+            </distribution>
+        </group> -->
+        <group>
+            <name>Avicennia</name>
+            <species>Avicennia</species>
+            <distribution>
+                <type>Random</type>
+                <domain>
+                    <x_1> 0 </x_1>
+                    <y_1> 0 </y_1>
+                    <x_2> 50 </x_2>
+                    <y_2> 10 </y_2>
+                </domain>
+                <n_individuals> 50 </n_individuals>
+                <n_recruitment_per_step> 10 </n_recruitment_per_step>
+            </distribution>
+        </group>
+        <group>
+            <name>Rhizophora</name>
+            <species>C:/Users/embdm/Dokumente/FreieUniBerlin/Bachelorarbeit/MASCOT/SourceCode/pyMANGA/PopulationLib/Species/Rhizophora.py</species>
+            <distribution>
+                <type>Random</type>
+                <domain>
+                    <x_1>0</x_1>
+                    <y_1>0</y_1>
+                    <x_2>50</x_2>
+                    <y_2>10</y_2>
+                </domain>-->
+                <n_individuals>50</n_individuals>
+                <n_recruitment_per_step>10</n_recruitment_per_step>
+            </distribution>
+        </group>-->
+    </initial_population>
+    <tree_time_loop>
+        <type> Simple </type>
+        <t_start> 0 </t_start>
+        <t_end> 3155760000 </t_end>  200 years
+        <delta_t> 15778800 </delta_t> <!-- 0,5 years -->
+    </tree_time_loop>
+    <visualization>
+        <type>NONE</type>
+    </visualization>
+    <tree_output>
+        <type> OneTimestepOneFile </type>
+        <allow_previous_output>True</allow_previous_output>
+        <output_each_nth_timestep> 1 </output_each_nth_timestep>
+        <output_dir>TreeOutput</output_dir>
+        <geometry_output> r_root </geometry_output>
+        <geometry_output> r_crown </geometry_output>
+        <geometry_output> r_stem </geometry_output>
+        <geometry_output> h_stem </geometry_output>
+        <growth_output> salinity </growth_output>
+    </tree_output>
+</MangaProject>
